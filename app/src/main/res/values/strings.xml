@@ -20,4 +20,6 @@
     <string name="pick_button_text">Choose</string>
     <string name="capture_button_text">Capture</string>
     <string name="picked_imageview_description">Picked Image</string>
+    <string name="upload_warning_textview_text">Can`t find any code on this image.</string>
+    <string name="success_decode_toast_text">Decoded successfully</string>
 </resources>

@@ -12,6 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
@@ -19,9 +21,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.mobileclient.databinding.FragmentImagePickerBinding
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.FileDataPart
+import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
+import java.lang.Exception
 
 
 class ImagePickerFragment : Fragment() {
@@ -34,6 +38,7 @@ class ImagePickerFragment : Fragment() {
     private lateinit var pickButton: Button
     private lateinit var photoButton: Button
     private lateinit var uploadButton: Button
+    private lateinit var warningTextView: TextView
 
     private val pickImage = 100
     private val cameraRequest = 1888
@@ -58,6 +63,7 @@ class ImagePickerFragment : Fragment() {
         pickButton = view.findViewById(R.id.pick_button)
         photoButton = view.findViewById(R.id.capture_button)
         uploadButton = view.findViewById(R.id.upload_button)
+        warningTextView = view.findViewById(R.id.warning_textview)
 
         imageView.setImageResource(R.drawable.placeholder_image)
 
@@ -67,7 +73,7 @@ class ImagePickerFragment : Fragment() {
 
             val bitmap: Bitmap = imageView.drawable.toBitmap()
             val bos = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.PNG, 0, bos)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos)
             val bitmapdata = bos.toByteArray()
 
             val fos = FileOutputStream(f)
@@ -80,9 +86,19 @@ class ImagePickerFragment : Fragment() {
                 .add(file)
                 .responseString()
 
-            println(result)
-
-            findNavController().navigate(R.id.action_imagePickerFragment_to_FirstFragment)
+            try {
+                println(result.get())
+                Toast.makeText(
+                    context,
+                    getString(R.string.success_decode_toast_text),
+                    Toast.LENGTH_LONG
+                ).show()
+                findNavController().navigate(R.id.action_imagePickerFragment_to_FirstFragment)
+            } catch (e: Exception) {
+                warningTextView.visibility = View.VISIBLE
+                uploadButton.visibility = View.INVISIBLE
+                println(e.message)
+            }
         }
 
         pickButton.setOnClickListener {
@@ -104,12 +120,16 @@ class ImagePickerFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == AppCompatActivity.RESULT_OK && requestCode == pickImage) {
+            warningTextView.visibility = View.INVISIBLE
             imageUri = data?.data
             imageView.setImageURI(imageUri)
+            uploadButton.visibility = View.VISIBLE
         }
         if (requestCode == cameraRequest) {
+            warningTextView.visibility = View.INVISIBLE
             val photo: Bitmap = data?.extras?.get("data") as Bitmap
             imageView.setImageBitmap(photo)
+            uploadButton.visibility = View.VISIBLE
         }
     }
 }
