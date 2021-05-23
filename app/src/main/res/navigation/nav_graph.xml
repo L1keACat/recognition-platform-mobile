@@ -60,6 +60,17 @@
         <argument
             android:name="username"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detailsFragment_to_storesFragment"
+            app:destination="@id/storesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/storesFragment"
+        android:name="com.example.mobileclient.StoresFragment"
+        android:label="@string/stores_fragment_label"
+        tools:layout="@layout/fragment_stores" >
+        <argument android:name="stores"
+            app:argType="string" />
     </fragment>
 
 </navigation>

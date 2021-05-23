@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +31,8 @@ class DetailsFragment : Fragment() {
 
     private lateinit var detailsList: RecyclerView
     private lateinit var productImage: ImageView
+    private lateinit var storesButton: Button
+    private lateinit var reviewsButton: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +46,8 @@ class DetailsFragment : Fragment() {
 
         detailsList = view.findViewById(R.id.details_list)
         productImage = view.findViewById(R.id.product_imageview)
+        storesButton = view.findViewById(R.id.stores_button)
+        reviewsButton = view.findViewById(R.id.reviews_button)
 
         val data = args.codeData
         val list: MutableList<ItemObject> = mutableListOf()
@@ -209,19 +215,30 @@ class DetailsFragment : Fragment() {
                     bmp = BitmapFactory.decodeStream(`in`)
 
                     productImage.setImageBitmap(bmp)
-                }
-                /*if (productObject.stores.isNotEmpty()) {
-                    for (store in productObject.stores) {
-                    }
+                    productImage.visibility = View.VISIBLE
                 }
                 if (productObject.features.isNotEmpty()) {
-
+                    var features = ""
+                    for (feature in productObject.features) {
+                        features = features + feature + "\n"
+                    }
+                    item = ItemObject("Features", features.dropLast(1))
+                    list.add(item)
+                }
+                if (productObject.stores.isNotEmpty()) {
+                    storesButton.visibility = View.VISIBLE
+                    storesButton.setOnClickListener {
+                        val action =
+                            DetailsFragmentDirections.actionDetailsFragmentToStoresFragment(
+                                Gson().toJson(product.get("stores"))
+                            )
+                        findNavController().navigate(action)
+                    }
                 }
                 if (productObject.reviews.isNotEmpty()) {
-
-                }*/
+                    reviewsButton.visibility = View.VISIBLE
+                }
             }
-
         }
 
         val adapter = CustomAdapter(list)
