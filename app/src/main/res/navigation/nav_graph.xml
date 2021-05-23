@@ -3,16 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/imagePickerFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/imagePickerFragment"
         android:name="com.example.mobileclient.ImagePickerFragment"
         android:label="@string/image_picker_fragment_label"
         tools:layout="@layout/fragment_image_picker" >
+        <argument
+            android:name="username"
+            app:argType="string" />
         <action
-            android:id="@+id/action_imagePickerFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_imagePickerFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/FirstFragment"
@@ -36,6 +39,27 @@
         <argument
             android:name="myArg"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.mobileclient.LoginFragment"
+        android:label="@string/login_fragment_label"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_imagePickerFragment"
+            app:destination="@id/imagePickerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.mobileclient.DetailsFragment"
+        android:label="@string/product_details_fragment_label"
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="codeData"
+            app:argType="string" />
+        <argument
+            android:name="username"
+            app:argType="string" />
     </fragment>
 
 </navigation>

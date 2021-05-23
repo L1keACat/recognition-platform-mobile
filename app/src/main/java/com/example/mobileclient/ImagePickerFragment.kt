@@ -18,10 +18,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.mobileclient.databinding.FragmentImagePickerBinding
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.FileDataPart
-import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -33,6 +33,8 @@ class ImagePickerFragment : Fragment() {
     private var _binding: FragmentImagePickerBinding? = null
 
     private val binding get() = _binding!!
+
+    val args: ImagePickerFragmentArgs by navArgs()
 
     private lateinit var imageView: ImageView
     private lateinit var pickButton: Button
@@ -82,7 +84,7 @@ class ImagePickerFragment : Fragment() {
             fos.close()
 
             val file = FileDataPart.from(f.absolutePath, name = "file")
-            val (_, _, result) = Fuel.upload("$serverUrl/uploadFile/test")
+            val (_, _, result) = Fuel.upload("$serverUrl/uploadFile/${args.username}")
                 .add(file)
                 .responseString()
 
@@ -93,7 +95,12 @@ class ImagePickerFragment : Fragment() {
                     getString(R.string.success_decode_toast_text),
                     Toast.LENGTH_LONG
                 ).show()
-                findNavController().navigate(R.id.action_imagePickerFragment_to_FirstFragment)
+                val action =
+                    ImagePickerFragmentDirections.actionImagePickerFragmentToDetailsFragment(
+                        result.get(),
+                        args.username
+                    )
+                findNavController().navigate(action)
             } catch (e: Exception) {
                 warningTextView.visibility = View.VISIBLE
                 uploadButton.visibility = View.INVISIBLE

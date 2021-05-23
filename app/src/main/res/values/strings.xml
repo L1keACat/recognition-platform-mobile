@@ -4,7 +4,9 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
+    <string name="login_fragment_label">Login</string>
     <string name="image_picker_fragment_label">Choose Image</string>
+    <string name="product_details_fragment_label">Product Details</string>
     <string name="previous">Previous</string>
 
     <string name="hello_first_fragment">0</string>
@@ -22,4 +24,9 @@
     <string name="picked_imageview_description">Picked Image</string>
     <string name="upload_warning_textview_text">Can`t find any code on this image.</string>
     <string name="success_decode_toast_text">Decoded successfully</string>
+    <string name="login_textview_text">Enter your username</string>
+    <string name="input_hint_username">Username</string>
+    <string name="login_button">Login</string>
+    <string name="details_textview_text">Decoded details</string>
+    <string name="product_image">Product image</string>
 </resources>
