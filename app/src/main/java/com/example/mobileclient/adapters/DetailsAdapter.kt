@@ -1,15 +1,14 @@
-package com.example.mobileclient
+package com.example.mobileclient.adapters
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mobileclient.R
 import com.example.mobileclient.model.ItemObject
 
-class CustomAdapter (private val items: List<ItemObject>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class DetailsAdapter (private val items: List<ItemObject>) : RecyclerView.Adapter<DetailsAdapter.ViewHolder>() {
 
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
@@ -22,7 +21,7 @@ class CustomAdapter (private val items: List<ItemObject>) : RecyclerView.Adapter
 
     // ... constructor and member variables
     // Usually involves inflating a layout from XML and returning the holder
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val context = parent.context
         val inflater = LayoutInflater.from(context)
         // Inflate the custom layout
@@ -32,7 +31,7 @@ class CustomAdapter (private val items: List<ItemObject>) : RecyclerView.Adapter
     }
 
     // Involves populating data into the item through holder
-    override fun onBindViewHolder(viewHolder: CustomAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         // Get the data model based on position
         val item: ItemObject = items[position]
         // Set item views based on your views and data model

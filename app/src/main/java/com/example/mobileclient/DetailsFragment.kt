@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mobileclient.adapters.DetailsAdapter
 import com.example.mobileclient.model.ItemObject
 import com.example.mobileclient.model.RootObject
 import com.github.kittinunf.fuel.httpGet
@@ -241,7 +242,7 @@ class DetailsFragment : Fragment() {
             }
         }
 
-        val adapter = CustomAdapter(list)
+        val adapter = DetailsAdapter(list)
 
         detailsList.adapter = adapter
         detailsList.layoutManager = LinearLayoutManager(context)

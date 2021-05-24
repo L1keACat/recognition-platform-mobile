@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linearLayout"
+    android:background="@color/screenBackgroundDark"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -13,7 +14,8 @@
         android:autoLink="web"
         android:clickable="true"
         android:focusable="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:text="text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -28,6 +30,7 @@
         android:autoLink="web"
         android:clickable="true"
         android:focusable="true"
+        android:text="text"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mobileclient.adapters.DetailsAdapter
 import com.example.mobileclient.model.ItemObject
 import com.example.mobileclient.model.Sample
 import com.google.gson.Gson
@@ -27,7 +28,6 @@ class StoresFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_stores, container, false)
     }
 
@@ -64,7 +64,7 @@ class StoresFragment : Fragment() {
 
         storesCountTextView.text = getString(R.string.stores_count_textview, values.length())
 
-        val adapter = CustomAdapter(list)
+        val adapter = DetailsAdapter(list)
 
         storesList.adapter = adapter
         storesList.layoutManager = LinearLayoutManager(context)

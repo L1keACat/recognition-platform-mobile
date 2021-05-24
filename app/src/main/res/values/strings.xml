@@ -8,6 +8,7 @@
     <string name="image_picker_fragment_label">Choose Image</string>
     <string name="product_details_fragment_label">Product Details</string>
     <string name="stores_fragment_label">Stores</string>
+    <string name="history_fragment_label">History</string>
     <string name="previous">Previous</string>
 
     <string name="hello_first_fragment">0</string>
@@ -25,13 +26,16 @@
     <string name="picked_imageview_description">Picked Image</string>
     <string name="upload_warning_textview_text">Can`t find any code on this image.</string>
     <string name="success_decode_toast_text">Decoded successfully</string>
-    <string name="login_textview_text">Enter your username</string>
-    <string name="input_hint_username">Username</string>
+    <string name="login_textview_text">Enter your email</string>
+    <string name="input_hint_email">Email</string>
     <string name="login_button">Login</string>
     <string name="details_textview_text">Decoded details</string>
     <string name="product_image">Product image</string>
     <string name="stores_button_text">Stores</string>
     <string name="reviews_button_text">Reviews</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="history_textview">%s`s history</string>
     <string name="stores_count_textview">Available stores: %d</string>
+    <string name="history_button_text">History</string>
+    <string name="unicode_checkmark">✔</string>
+    <string name="unicode_warning">⚠</string>
 </resources>

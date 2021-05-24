@@ -40,6 +40,7 @@ class ImagePickerFragment : Fragment() {
     private lateinit var pickButton: Button
     private lateinit var photoButton: Button
     private lateinit var uploadButton: Button
+    private lateinit var historyButton: Button
     private lateinit var warningTextView: TextView
 
     private val pickImage = 100
@@ -65,6 +66,7 @@ class ImagePickerFragment : Fragment() {
         pickButton = view.findViewById(R.id.pick_button)
         photoButton = view.findViewById(R.id.capture_button)
         uploadButton = view.findViewById(R.id.upload_button)
+        historyButton = view.findViewById(R.id.history_button)
         warningTextView = view.findViewById(R.id.warning_textview)
 
         imageView.setImageResource(R.drawable.placeholder_image)
@@ -93,7 +95,7 @@ class ImagePickerFragment : Fragment() {
                 Toast.makeText(
                     context,
                     getString(R.string.success_decode_toast_text),
-                    Toast.LENGTH_LONG
+                    Toast.LENGTH_SHORT
                 ).show()
                 val action =
                     ImagePickerFragmentDirections.actionImagePickerFragmentToDetailsFragment(
@@ -116,6 +118,14 @@ class ImagePickerFragment : Fragment() {
         photoButton.setOnClickListener {
             val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(cameraIntent, cameraRequest)
+        }
+
+        historyButton.setOnClickListener {
+            val action =
+                ImagePickerFragmentDirections.actionImagePickerFragmentToHistoryFragment(
+                    args.username
+                )
+            findNavController().navigate(action)
         }
     }
 

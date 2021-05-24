@@ -36,7 +36,7 @@
             android:id="@+id/input_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/input_hint_username" />
+            android:hint="@string/input_hint_email" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

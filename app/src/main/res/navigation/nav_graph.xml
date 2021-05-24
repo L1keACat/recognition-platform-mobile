@@ -16,29 +16,9 @@
         <action
             android:id="@+id/action_imagePickerFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.mobileclient.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first" >
-
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.mobileclient.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second" >
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-        <argument
-            android:name="myArg"
-            app:argType="integer" />
+            android:id="@+id/action_imagePickerFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -70,6 +50,15 @@
         android:label="@string/stores_fragment_label"
         tools:layout="@layout/fragment_stores" >
         <argument android:name="stores"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.mobileclient.HistoryFragment"
+        android:label="@string/history_fragment_label"
+        tools:layout="@layout/fragment_history" >
+        <argument
+            android:name="username"
             app:argType="string" />
     </fragment>
 
